@@ -32,6 +32,48 @@ Build a data extraction pipeline that:
 
 Your logic should live in `main.py`.
 
+## 🚀 Setup and Running
+
+### Prerequisites
+
+1. **Install dependencies**:
+   ```bash
+   uv sync
+   ```
+
+2. **Set your API key** (required):
+   ```bash
+   export OPENROUTER_API_KEY='your-api-key-here'
+   ```
+
+### Running the Pipeline
+
+```bash
+uv run python main.py
+```
+
+The script will:
+1. Use [Marker](https://github.com/datalab-to/marker) to convert PDFs to structured markdown
+2. Extract structured data using AI (Grok-4-Fast via OpenRouter)
+3. Validate results against the evaluation set
+
+**Note**: On first run, Marker will download its models (~2GB). This is a one-time setup.
+
+## 🔧 Technical Approach
+
+This solution uses a two-stage pipeline:
+
+1. **PDF to Markdown Conversion** - [Marker](https://github.com/datalab-to/marker) converts PDFs to high-quality markdown, preserving:
+   - Table structures
+   - Form layouts
+   - Reading order
+   - Achieves 95.6% accuracy on financial documents
+
+2. **Structured Data Extraction** - An LLM extracts specific fields from the markdown:
+   - Uses the Pydantic schema to guide extraction
+   - Handles complex tax form structures and supplemental schedules
+   - Falls back to basic extraction if Marker fails
+
 ## ✅ Evaluation
 
 We'll assess your solution based on:
