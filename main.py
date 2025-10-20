@@ -46,7 +46,7 @@ def process_all_pdfs() -> Dict[str, Tuple[k1_cover_page, k1_federal_footnotes]]:
 
 def main():
     """Main execution function."""
-    print("K-1 Tax Form Data Extraction Pipeline (Vision Model)")
+    print("K-1 Tax Form Data Extraction Pipeline")
     print("=" * 80)
     
     if not os.environ.get("OPENROUTER_API_KEY"):
